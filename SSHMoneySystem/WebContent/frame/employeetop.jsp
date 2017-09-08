@@ -28,7 +28,7 @@
  </style>
 <body>
 <div class="head">
-<h2 align="center">njuptzwt的超市收银系统</h2>
+<h2 align="center">超市收银系统</h2>
 </div>
 <div class="Info">
 <h3 align="center">欢迎登录：<s:property value="#session.Employee.ename"/>&nbsp;&nbsp;

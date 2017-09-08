@@ -22,7 +22,7 @@ body {
 			width="20">
 	</a>
 	</span>
-	<table>
+	<table  border="5" cellspacing="3" cellpadding="10">
 		<tr>
 			<th>商品号</th>
 			<th>商品名称</th>

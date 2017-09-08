@@ -78,6 +78,7 @@ public class EmployeeAction extends SuperAction implements ModelDriven<Employee>
 		session.setAttribute("employee", employee);
 		return "update_success";
 	}
+	
 	//保存修改后的员工信息
 	public String save()
 	{
@@ -88,7 +89,50 @@ public class EmployeeAction extends SuperAction implements ModelDriven<Employee>
 	public String Login()
 	{
 		List<Employee> employeeList=employeeService.findAll();//无参数findAll找到所有对象，进行返回
-		return "login_success";
+		String eid=(String) request.getAttribute("eid");//输入唯一的工号
+		String password=(String) request.getAttribute("password");//密码
+		if(eid.equals("")||eid==null)
+		{
+			this.addFieldError("userError", "用户名不能为空");
+			return INPUT;
+		}
+		else if(password.equals("")||password==null)
+		{
+			this.addFieldError("passwordError", "密码不能为空");
+			return INPUT;
+		}
+		for(Employee e:employeeList)
+		{
+			if(eid.equals(e.getEid()))
+			{
+				if(password.equals(e.getPassword()))
+				{
+					session.setAttribute("Employee", e);
+					if(e.getRole().equals("管理员"))
+					{
+					return "manager_login";
+					}
+					else
+					{
+						System.out.println("执行");
+						return "Common_login";
+					}
+				}
+				else
+				{
+					this.addFieldError("passwordError", "密码输入错误");
+					return INPUT;
+				}
+			}
+		}
+		this.addFieldError("userError", "用户名不存在");
+		return INPUT;
+	}
+	//实现注销登陆的功能
+	public String Logout()
+	{
+		session.setAttribute("Employee", null);
+		return INPUT;
 	}
 	@Override
 	public Employee getModel() {

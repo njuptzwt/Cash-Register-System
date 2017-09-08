@@ -57,7 +57,7 @@ public class CommodityAction extends SuperAction implements ModelDriven<Commodit
 		ActionContext.getContext().getValueStack().push(page);//这个函数的作用
 		return "findAll";
 	}
-	//删除员工的信息
+	//删除商品的信息
 	public String deleteCommodity()
 	{
 		//request方式获取请求参数
@@ -65,13 +65,31 @@ public class CommodityAction extends SuperAction implements ModelDriven<Commodit
 		commodityService.delete(id);
 		return "delete_success";
 	}
-	//修改更新员工的信息,先查找，并返回信息
+	//修改更新商品的信息,先查找，并返回信息
 	public String UpdateCommodity()
 	{
 		String id=request.getParameter("cid");
 		Commodity commodity=commodityService.findByid(id);
+		if(commodity==null)
+		{
+			this.addFieldError("error_update", "修改对象不存在");
+			return "error_update";
+		}
 		session.setAttribute("commodity", commodity);
 		return "update_success";
+	}
+	//查询单个商品返回
+	public String QueryCommodity()
+	{
+		String id=request.getParameter("cid");
+		Commodity commodity=commodityService.findByid(id);
+		if(commodity==null)
+		{
+			this.addFieldError("error_query", "查询对象不存在");
+			return "error_query";
+		}
+		session.setAttribute("commodity", commodity);
+		return "query_success";
 	}
 	//保存修改后的员工信息
 	public String saveCommodity()

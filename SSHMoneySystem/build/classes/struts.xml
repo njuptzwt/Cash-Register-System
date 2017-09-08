@@ -9,12 +9,15 @@
 <package name="Commodity" namespace="/Commodity" extends="struts-default">
 <action name="Commodity_*" class="CommodityAction" method="{1}">
 <result name="findAll">/Commodity/ShowCommodity.jsp</result>
+<result name="query_success">/Commodity/QueryCommodity.jsp</result>
 <result name="add_success" type="chain">Commodity_findAll</result>
 <result name="delete_success" type="chain">Commodity_findAll</result>
 <result name="update_success">/Commodity/UpdateCommodity.jsp</result>
 <result name="save_success" type="chain">Commodity_findAll</result>
+<result name="error_query">/Commodity/error_query.jsp</result>
+<result name="error_update">/Commodity/error_update.jsp</result>
 <result name="input">/index.jsp</result>
-<allowed-methods>deleteCommodity,addCommodity,saveCommodity,UpdateCommodity,findAll</allowed-methods>
+<allowed-methods>deleteCommodity,addCommodity,saveCommodity,UpdateCommodity,findAll,QueryCommodity</allowed-methods>
 </action>
 </package>
 
@@ -22,7 +25,9 @@
 <package name="Employee" namespace="/Employee" extends="struts-default">
 <!-- 定义了自己的拦截器之后，不会调用系统默认的拦截器，需要自己添加 -->
 <interceptors >
-<interceptor name="loginInterceptor" class="com.ssh.money.LoginInterceptors"></interceptor>
+<interceptor name="loginInterceptor" class="com.ssh.money.interceptors.LoginInterceptors">
+<param name="excludeMethods">Login,login</param>
+</interceptor>
 
 <!-- 定义自己的拦截栈，按照栈的顺序执行拦截作用 -->
 <interceptor-stack name="myInterceptor">
@@ -33,14 +38,17 @@
 <!-- 默认拦截器配置 -->
 <default-interceptor-ref name="myInterceptor"></default-interceptor-ref>
 <action name="Employee_*" class="EmployeeAction" method="{1}">
+<result name="input">/Employee/EmployeeLogin.jsp</result>
 <result name="query_list">/Employee/showEmployee.jsp</result>
 <result name="delete_success" type="chain">Employee_findAll</result>
 <result name="update_success">/Employee/EmployeeUpdate.jsp</result>
 <result name="save_success" type="chain">Employee_findAll</result>
 <result name="add_success" type="chain">Employee_findAll</result>
-<allowed-methods>findAll,delete,addEmployee,findByid,Update,save</allowed-methods>
+<result name="manager_login">/Employee/ManagerWelcome.jsp</result>
+<result name="Common_login">/Employee/EmployeeWelcome.jsp</result>
+<allowed-methods>findAll,delete,addEmployee,findByid,Update,save,Login,Logout</allowed-methods>
 </action>
 </package>
-<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+<constant name="struts.enable.DynamicMethodInvocation" value="false" />
 
 </struts>

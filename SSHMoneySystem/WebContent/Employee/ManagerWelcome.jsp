@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>首页</title>
 </head>
-<frameset rows="10,80,10">
+<frameset  rows="20,70,10">
 <frame name="top" src="${pageContext.request.contextPath }/frame/top.jsp"></frame>
 <frameset cols="20,80">
 <frame name="left" src="${pageContext.request.contextPath }/frame/left.jsp"></frame>

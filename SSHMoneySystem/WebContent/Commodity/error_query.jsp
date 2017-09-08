@@ -4,17 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<!-- 定义body的样式 -->
+<title></title>
 <style type="text/css">    
  body{    
       background-image: url(${pageContext.request.contextPath }/Images/main.jpg);    
       background-repeat: no-repeat;
       background-size:100%,100%;
  }    
- </style>    
- </head>    
- <body>
- <!--  <img alt="背景图" src="${pageContext.request.contextPath }/Images/money.jpg">-->
- </body>    
- </html>
+ </style>   
+</head>
+<body>
+<h1>输入的货物不存在，请重新查询！</h1>
+</body>
+</html>

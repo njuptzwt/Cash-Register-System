@@ -21,24 +21,16 @@
  </style>    
 </head>
 <body>
-<h3>后台管理操作</h3>
+<h3>前台管理操作</h3>
 <p></p>
 <p></p>
 <p></p>
 </br>
 </br>
 <p>
-<ol>
-<li>
-<!-- namespace的用法-->
-<s:url var="findAll" namespace="/Employee" action="Employee_findAll"></s:url>
-<s:a href="%{findAll}" target="right">员工管理</s:a>
-</li>
-<li>
-<s:url var="ComfindAll" namespace="/Commodity" action="Commodity_findAll"></s:url>
-<s:a href="%{ComfindAll}" target="right">商品仓库</s:a>
-</li>
-</ol>
-<p>
+<s:form namespace="/Commodity" action="Commodity_QueryCommodity" method="post" target="right">
+请输入商品编号:<input type="text" name="cid">
+<input type="submit" value="查询">
+</s:form>
 </body>
 </html>
