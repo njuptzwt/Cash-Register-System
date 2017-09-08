@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xmlns:tx="http://www.springframework.org/schema/tx"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/aop
+http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx.xsd">
+		
+		<!-- 配置业务层的bean对象注入 -->
+		<!-- 有接口实现的时候
+		<bean id="prductservice" class="com.ssh.Interface.ProductServiceInterface">
+		<property name="productdao" ref="prductDao"></property></bean>
+		 -->
+		 
+		<!-- 配置DAO层的数据 -->
+		<!-- <bean id="productDao" class="com.ssh.dao.ProductDaoInteface"></bean>
+		-->
+		
+		<!-- Spring整合hibernate -->
+		<!-- 引入外部的属性文件 -->
+        <context:property-placeholder location="classpath:jdbc.properties"/>
+		<!-- 配置数据源来管理数据库的连接 -->
+		<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${jdbc.driverClass}" />
+        <property name="jdbcUrl" value="${jdbc.url}" />
+        <property name="user" value="${jdbc.username}" />
+        <property name="password" value="${jdbc.password}" />
+       </bean>
+       
+       <!-- 配置Hibernate的相关文件，用spring去管理sessionfactory,来创建Hibernate的配置包括数据库连接，hibernate属性，实体类的映射文件等 -->
+       
+       <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+       <!-- 配置第一个,数据源 -->
+        <property name="dataSource">
+            <ref bean="dataSource"/>
+        </property>
+        
+        <!-- 配置第二个，持久化类的文件路径，通过classpath的方式指向了映射文件所在的目录,把domain包及子包下所有的映射文件全部加载了 -->
+        <property name="mappingDirectoryLocations">
+            <value>classpath:com/ssh/money/domain</value>
+        </property>
+        
+      <!-- 第二种加载持久化类的文件路径的方法-->
+      <!-- <property name="packagesToScan">
+            <list>
+                <value>com.ssh.domain</value>
+            </list>
+        </property>
+        -->
+        
+        <!-- 配置第三个，hibernate的配置信息方言之类的 -->
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.format_sql">true</prop>
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>
+        </property>
+    </bean>
+		<!-- Employee的action对象 -->
+		
+		<bean id="EmployeeAction" class="com.ssh.money.action.EmployeeAction" scope="prototype">
+		<!-- bean对象中的Field字段，用set方式注入，使用property的属性，ref引用，作为对象传入 -->
+		<property name="employeeService" ref="employeeService"></property></bean>
+		
+		<!-- 配置Employee的service对象，注册的时候使用接口实现类，声明的时候使用接口类即可 -->
+		
+		<bean id="employeeService" class="com.ssh.money.service.EmployeeServiceImpl">
+		<property name="employeeDao" ref="employeeDao"></property></bean>
+		
+		<!-- 数据库Employee的dao对象 -->
+		
+		<bean id="employeeDao" class="com.ssh.money.dao.EmployeeDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+		</bean>
+	
+		<!-- 配置商品的对象 -->
+		<bean id="CommodityAction" class="com.ssh.money.action.CommodityAction" scope="prototype">
+		<!-- bean对象中的Field字段，用set方式注入，使用property的属性，ref引用，作为对象传入 -->
+		<property name="commodityService" ref="commodityService"></property></bean>
+		
+		<!-- 配置Commodity的service对象，注册的时候使用接口实现类，声明的时候使用接口类即可 -->
+		
+		<bean id="commodityService" class="com.ssh.money.service.CommodityServiceImpl">
+		<property name="commodityDao" ref="commodityDao"></property></bean>
+		
+		<!-- 数据库Commodity的dao对象 -->
+		
+		<bean id="commodityDao" class="com.ssh.money.dao.CommodityDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+		</bean>
+		<!--  <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+        </bean>
+		-->
+		
+        <bean id="transactionManager"
+        class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory" />
+        </bean>
+        
+         <!-- 加载事务驱动 -->
+         <!-- 对@Transactional这个注解进行的驱动，这是基于注解的方式使用事务配置声明，这样在具体应用中可以指定对哪些方法使用事务 -->
+         
+         <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"></tx:annotation-driven>
+		
+		</beans>

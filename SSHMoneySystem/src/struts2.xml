@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+    "http://struts.apache.org/dtds/struts-2.5.dtd">
+<struts>
+
+<!-- 商品的操作对象 -->
+<package name="Commodity" namespace="/Commodity" extends="struts-default">
+<action name="Commodity_*" class="CommodityAction" method="{1}">
+<result name="findAll">/Commodity/findAll2.jsp</result>
+<result name="input">/index.jsp</result>
+<result name="add_success" type="chain">Commodity_findAll</result>
+<result name="delete_success" type="chain">Commodity_findAll</result>
+<result name="find_byid">/Commodity/update.jsp</result>
+<result name="modify_success" type="chain">Commodity_findAll</result>
+<allowed-methods>findAll,delete,add,findByid,Update</allowed-methods>
+</action>
+</package>
+
+<!-- 员工的Action操作，Struts的action操作和springMVC的Controller操作很像 -->
+<package name="Employee" namespace="/Employee" extends="struts-default">
+<!-- 定义了自己的拦截器之后，不会调用系统默认的拦截器，需要自己添加 -->
+<interceptors >
+<interceptor name="loginInterceptor" class="com.ssh.money.LoginInterceptors"></interceptor>
+
+<!-- 定义自己的拦截栈，按照栈的顺序执行拦截作用 -->
+<interceptor-stack name="myInterceptor">
+<interceptor-ref name="defaultStack"></interceptor-ref>
+<interceptor-ref name="loginInterceptor"></interceptor-ref>
+</interceptor-stack>
+</interceptors>
+<!-- 默认拦截器配置 -->
+<default-interceptor-ref name="myInterceptor"></default-interceptor-ref>
+
+<action name="Employee_*" class="EmployeeAction" method="{1}">
+<result name="login_success">/Employee/show.jsp</result>
+<result name="input">/index.jsp</result>
+<allowed-methods>findAll,delete,addEmployee,findByid,Update</allowed-methods>
+</action>
+</package>
+<constant name="struts.enable.DynamicMethodInvocation" value="true" />
+
+</struts>
