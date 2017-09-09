@@ -25,8 +25,8 @@
 <p></p>
 <p></p>
 <p></p>
-</br>
-</br>
+<br/>
+<br/>
 <p>
 <s:form namespace="/Commodity" action="Commodity_QueryCommodity" method="post" target="right">
 请输入商品编号:<input type="text" name="cid">
