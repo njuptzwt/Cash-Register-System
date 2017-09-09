@@ -11,6 +11,9 @@ body {
 	background-repeat: no-repeat;
 	background-size: 100%, 100%;
 }
+table {
+	border-collapse: collapse;
+}
 </style>
 </head>
 <body>
@@ -22,7 +25,7 @@ body {
 			width="20">
 	</a>
 	</span>
-	<table  border="5" cellspacing="3" cellpadding="10">
+	<table  border="1" cellspacing="5" cellpadding="10">
 		<tr>
 			<th>工号</th>
 			<th>姓名</th>
