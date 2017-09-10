@@ -170,5 +170,18 @@ public class CommodityAction extends SuperAction implements ModelDriven<Commodit
 		}
 		return "Submit_success";
 	}
+	//多余的操作没有去实现
+	public String QueryByCid()
+	{
+		String cid=request.getParameter("cid");
+		Commodity c = commodityService.findByid(cid);
+		if (c == null) {
+			this.addFieldError("error_query", "查询对象不存在");
+			return "error_query";
+		}
+		session.setAttribute("commodity", c);
+		return "query_success";
+		
+	}
 
 }

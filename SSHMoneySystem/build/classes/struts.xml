@@ -9,7 +9,7 @@
 <package name="Commodity" namespace="/Commodity" extends="struts-default">
 <action name="Commodity_*" class="CommodityAction" method="{1}">
 <result name="findAll">/Commodity/ShowCommodity.jsp</result>
-<result name="query_success">/Commodity/QueryCommodity2.jsp</result>
+<result name="query_success">/Commodity/QueryCommodity.jsp</result>
 <result name="add_success" type="chain">Commodity_findAll</result>
 <result name="delete_success" type="chain">Commodity_findAll</result>
 <result name="update_success">/Commodity/UpdateCommodity.jsp</result>
@@ -19,7 +19,7 @@
 <result name="Cart_list">/Commodity/Cart_list.jsp</result>
 <result name="Submit_success">/Commodity/SubmitCommodity.jsp</result>
 <result name="input">/index.jsp</result>
-<allowed-methods>deleteCommodity,addCommodity,saveCommodity,UpdateCommodity,findAll,QueryCommodity,CartCommodity,Submit</allowed-methods>
+<allowed-methods>deleteCommodity,addCommodity,saveCommodity,UpdateCommodity,findAll,QueryCommodity,CartCommodity,Submit,QueryByCid</allowed-methods>
 </action>
 </package>
 
