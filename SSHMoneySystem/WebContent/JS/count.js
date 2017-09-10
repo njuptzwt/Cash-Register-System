@@ -2,11 +2,8 @@ $(document).ready(function(){
 //获得文本框对象
 var t = $("#text_box");
 var p = $("#totalprice");
-p.attr('disabled',"true");
 var c = $("#total");
-c.attr('disabled',"true");
-var s=$("#price");
-s.attr('disabled',"true");
+var s = $("#price");
 //初始化数量为1,并失效减
 $('#min').attr('disabled',true);
  //数量增加操作

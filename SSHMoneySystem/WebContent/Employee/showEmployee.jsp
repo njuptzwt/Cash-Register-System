@@ -7,7 +7,7 @@
 <style type="text/css">
 body {
 	background-image:
-		url(${pageContext.request.contextPath }/Images/employee.jpg);
+		url(${pageContext.request.contextPath }/Images/right.jpg);
 	background-repeat: no-repeat;
 	background-size: 100%, 100%;
 }

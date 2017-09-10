@@ -8,11 +8,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>员工收银界面</title>
 </head>
-<frameset  rows="20,80">
-<frame name="employeetop" src="${pageContext.request.contextPath }/frame/employeetop.jsp"></frame>
+<frameset  rows="20,80" >
+<frame name="employeetop" src="${pageContext.request.contextPath }/frame/employeetop.jsp" frameborder="0"></frame>
 <frameset cols="30,70">
-<frame name="employeeleft" src="${pageContext.request.contextPath }/frame/employeeleft.jsp"></frame>
-<frame name="right" src="${pageContext.request.contextPath }/frame/employeeright.jsp"></frame>
+<frame name="employeeleft" src="${pageContext.request.contextPath }/frame/employeeleft.jsp" frameborder="0"></frame>
+<frame name="right" src="${pageContext.request.contextPath }/frame/employeeright.jsp" frameborder="0"></frame>
 </frameset>
 
 </frameset>
