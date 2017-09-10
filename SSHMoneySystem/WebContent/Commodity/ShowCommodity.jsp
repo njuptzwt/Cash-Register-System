@@ -4,6 +4,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script> 
+<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <style type="text/css">
 body {
 	background-image:
@@ -11,21 +14,22 @@ body {
 	background-repeat: no-repeat;
 	background-size: 100%, 100%;
 }
-table {
-	border-collapse: collapse;
-}
 </style>
 </head>
 <body>
 	<h3>商品信息展示</h3>
-	&nbsp;&nbsp;
-	<span> 添加商品信息<a
+	&nbsp;&nbsp; 添加商品
+	<a
 		href="${pageContext.request.contextPath }/Commodity/addCommodity.jsp">
-			<img src="${pageContext.request.contextPath }/Images/add.jpg"
-			width="20">
-	</a>
-	</span>
-	<table  border="1" cellspacing="5" cellpadding="10">
+		<img src="${pageContext.request.contextPath }/Images/add.jpg"
+		width="15">
+	</a>&nbsp;&nbsp; 
+	按商品号查询:
+	<input type="text" name="cid" id="cid">&nbsp;&nbsp;
+	按商品名称查询:
+	<input type="text" name="cname" id="cname">&nbsp;&nbsp;
+	<table class="table table-striped table-border table-hover">
+		<thead>
 		<tr>
 			<th>商品号</th>
 			<th>商品名称</th>
@@ -35,6 +39,7 @@ table {
 			<th>删除</th>
 			<th>编辑</th>
 		</tr>
+		<thead>
 
 		<!-- 遍历传出的数据 -->
 		<s:iterator value="list" var="commodity">
@@ -68,6 +73,7 @@ table {
 			</tr>
 		</s:iterator>
 	</table>
+	<p></p>
 	<table border="0" cellspacing="0" cellpadding="0" align="center">
 		<tr>
 			<td align="left"><span>第<s:property value="curpage" />/<s:property
