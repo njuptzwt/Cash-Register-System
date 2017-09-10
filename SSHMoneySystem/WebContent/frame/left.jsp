@@ -11,7 +11,7 @@
       font-family : 微软雅黑,宋体;
       font-size : 1em;
       color : #f00;
-      background-image: url(${pageContext.request.contextPath }/Images/left.jpg);    
+      background-image: url(${pageContext.request.contextPath }/Images/left.png);    
       background-repeat: no-repeat;
       background-size:100%,100%;
  }   
@@ -22,11 +22,8 @@
 </head>
 <body>
 <h3>后台管理操作</h3>
-<p></p>
-<p></p>
-<p></p>
-</br>
-</br>
+<br/>
+<br/>
 <p>
 <ol>
 <li>

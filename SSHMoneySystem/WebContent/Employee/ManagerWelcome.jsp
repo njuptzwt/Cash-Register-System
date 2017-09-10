@@ -9,13 +9,13 @@
 <title>首页</title>
 </head>
 <frameset  rows="20,70,10">
-<frame name="top" src="${pageContext.request.contextPath }/frame/top.jsp"></frame>
+<frame name="top" src="${pageContext.request.contextPath }/frame/top.jsp" frameborder="0"></frame>
 <frameset cols="20,80">
-<frame name="left" src="${pageContext.request.contextPath }/frame/left.jsp"></frame>
-<frame name="right" src="${pageContext.request.contextPath }/frame/right.jsp"></frame>
+<frame name="left" src="${pageContext.request.contextPath }/frame/left.jsp" frameborder="0"></frame>
+<frame name="right" src="${pageContext.request.contextPath }/frame/right.jsp" frameborder="0"></frame>
 </frameset>
 <frameset>
-<frame name="bottom" src="${pageContext.request.contextPath }/frame/buttom.jsp">
+<frame name="bottom" src="${pageContext.request.contextPath }/frame/buttom.jsp" frameborder="0">
 </frameset>
 
 </frameset>

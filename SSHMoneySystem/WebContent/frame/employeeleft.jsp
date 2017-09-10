@@ -11,7 +11,7 @@
       font-family : 微软雅黑,宋体;
       font-size : 1em;
       color : #f00;
-      background-image: url(${pageContext.request.contextPath }/Images/left.jpg);    
+      background-image: url(${pageContext.request.contextPath }/Images/left.png);    
       background-repeat: no-repeat;
       background-size:100%,100%;
  }   
@@ -22,15 +22,13 @@
 </head>
 <body>
 <h3>前台管理操作</h3>
-<p></p>
-<p></p>
-<p></p>
 <br/>
 <br/>
+<p></p>
 <p>
 <s:form namespace="/Commodity" action="Commodity_QueryCommodity" method="post" target="right">
-请输入商品编号:<input type="text" name="cid">
-<input type="submit" value="查询">
+&nbsp;&nbsp;&nbsp;请输入商品编号:<input type="text" name="cid">
+<input type="submit" value="收银">
 </s:form>
 </body>
 </html>

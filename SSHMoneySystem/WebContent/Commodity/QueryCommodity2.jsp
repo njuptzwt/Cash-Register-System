@@ -40,17 +40,18 @@ table {
 				<th>加入总数</th>
 			</tr>
 			<tr>
-				<td><input type="text" name="cid" value="<s:property value='#session.commodity.cid'/>" /></td>
+			<!-- jsp中为了防止用户恶意篡改，用readonly只读，而且服务器端可以接收参数 -->
+				<td><input type="text" name="cid" readonly style="border:0px" value="<s:property value='#session.commodity.cid'/>" /></td>
 				<td><s:property value="#session.commodity.cname" /></td>
-				<td><input id="price" type="text"
+				<td><input id="price" readonly type="text"
 					value='<s:property value="#session.commodity.price"/>'></td>
-				<td><input name="total" id="total" type="text"
+				<td><input name="total" readonly id="total" type="text"
 					value='<s:property value="#session.commodity.total"/>'></td>
 				<td><input id="min" name="" type="button" value="-" /> <input
 					id="text_box" name="count" type="text" value="1"
 					style="width: 30px; text-align: center" /> <input id="add" name=""
 					type="button" value="+" /></td>
-				<td><input name="totalprice" id="totalprice" type="text"
+				<td><input name="totalprice" readonly id="totalprice" type="text"
 					value='<s:property value="#session.commodity.price"/>'></td>
 				<td><input type="submit" value="进账"></td>
 				<!--  <td><img
